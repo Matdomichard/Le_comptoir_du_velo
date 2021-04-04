@@ -8,9 +8,8 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="/stylesheets/style.css">
         <link href="https://fonts.googleapis.com/css?family=Darker+Grotesque&display=swap" rel="stylesheet">
-
         <script src="https://kit.fontawesome.com/a41e9403cf.js" crossorigin="anonymous"></script>
-        <title>BikeShop - Shop</title>
+        <title>Le comptoir du vélo</title>
     </head>
 
     <body>
@@ -23,7 +22,7 @@
                 <nav class=" header col-12 navbar navbar-light bg-dark">
                         <a class="navbar" href="/">
                         <img src="/images/bike-logo.svg" width="50" height="50" class="logo" alt="">
-                        The Bike Shop Experience
+                        Le comptoir du vélo
                         </a>
                 </nav>
   
@@ -31,30 +30,30 @@
             <div class="row ariane">
                 <nav aria-label="breadcrumb" class="col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Shop</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Basket</li>
+                        <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Panier</li>
                     </ol>
                 </nav>
             </div>
 
 
-            <h1>Basket</h1>
+            <h1>Votre panier</h1>
 
             <% if(dataCardBike.length < 1){%>
-                <h5 class="no-article">No article in the Basket</h5>
+                <h5 class="no-article">Aucun article dans votre panier</h5>
             
             <%} else {%>
                 <div class="row">
                     <table class="table">
                         <thead>
                           <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Picture</th>
-                            <th scope="col">Model</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Price</th>
+                            <th scope="col">N°</th>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Modèle</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Prix</th>
                             <th scope="col">Total</th>
-                            <th scope="col">Suppr</th>
+                            <th scope="col">Supprimer</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -64,7 +63,7 @@
                             for(var i=0;i<dataCardBike.length;i++){
                             %>
                                 <tr class="basket-item">
-                                    <th scope="row"><%=i%></th>
+                                    <th scope="row"><%=i+1%></th>
                                     <td><img src=<%= dataCardBike[i].url %> class="basket-img"></td>
                                     <td>
                                         <%= dataCardBike[i].name %>
@@ -92,7 +91,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td class="total-box">Total Basket : </td>
+                            <td class="total-box">Sous-total : </td>
                             <td><%= totalCmd %>€</td>
                             <td></td>
                           </tr>
@@ -101,7 +100,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button class="btn btn-outline-info btn-sm btn-checkout" name="button-checkout">Checkout</button>
+                     <button class="btn btn-outline-info btn-sm btn-checkout" name="button-checkout"  id="checkout-button">Commander</button>
                     </div>
                 </div>
 
@@ -111,9 +110,10 @@
             
                 
         </div>
-        
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script src="/script/script.js"></script>
 
     </body>
 </html>

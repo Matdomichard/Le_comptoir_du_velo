@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link href="https://fonts.googleapis.com/css?family=Darker+Grotesque&display=swap" rel="stylesheet">
-    <title>BikeShop - Home</title>
+    <title>Le comptoir du vélo</title>
     </head>
     <body>
         
@@ -19,7 +19,7 @@
                 <nav class=" header col-12 navbar navbar-light bg-dark">
                     <a class="navbar" href="/">
                     <img src="/images/bike-logo.svg" width="50" height="50" class="logo" alt="">
-                    The Bike Shop Experience
+                    Le comptoir du vélo
                     </a>
                 </nav>
 
@@ -45,11 +45,10 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title"><%= dataBike[i].name%></h5>
                                 <%= dataBike[i].price%>€
-                                <a href="/shop?bikeNameFromFront=<%= dataBike[i].name%>&bikePriceFromFront=<%= dataBike[i].price%>&bikeImageFromFront=<%= dataBike[i].url%>" class="btn btn-outline-info btn-sm">Buy</a>
+                                <a href="/shop?bikeNameFromFront=<%= dataBike[i].name%>&bikePriceFromFront=<%= dataBike[i].price%>&bikeImageFromFront=<%= dataBike[i].url%>" class="btn btn-outline-info btn-sm">Ajouter au panier</a>
                             </div>
                         </div>
                     </div>
-
 
                 <%
                 }

@@ -10,6 +10,7 @@ var dataBike = [
   {name:"LIK099", url:"/images/bike-6.jpg", price:869},
 ]
 
+const stripe = require('stripe')('sk_test_51IbkXFLPFiZWWNCVCx60z9qzivk1VgwSe6MP4COSPnABFErbyAxPmRc6dysvydJq8fWHWY0kcS79W6jW7hO699a500YBhyd96l')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -41,7 +42,6 @@ router.get('/shop', function(req, res, next) {
     })
   }
 
-
   res.render('shop', {dataCardBike:req.session.dataCardBike});
 });
 
@@ -61,5 +61,47 @@ router.post('/update-shop', function(req, res, next){
 
   res.render('shop',{dataCardBike:req.session.dataCardBike})
 })
+
+
+
+router.get('/confirm', function(req, res, next){
+  res.render('confirm',{ title : 'Confirmation'})
+})
+
+router.get('/cancel', function(req, res, next){
+  res.render('cancel',{ title : 'Abandon de votre commande'})
+})
+
+
+router.post('/create-checkout-session', async (req, res) => {
+
+  let stripeItems = [];
+
+  for(var i=0;i<req.session.dataCardBike.length;i++){
+
+    stripeItems.push({
+      price_data: {
+        currency: 'eur',
+        product_data: {
+          name: req.session.dataCardBike[i].name,
+        },
+        unit_amount: req.session.dataCardBike[i].price * 100,
+  
+      },
+      quantity: req.session.dataCardBike[i].quantity,
+    });
+  }
+
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: stripeItems,
+    mode: 'payment',
+    success_url: 'http://localhost:3000/confirm',
+    cancel_url: 'http://localhost:3000',
+  });
+
+  res.json({ id: session.id });
+});
+
 
 module.exports = router;
